@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>clock</title>
+    <style>
+        .header{
+            background-color: aliceblue;
+            -webkit-border-radius: 13px;
+            font-size:50px;
+            font-weight:bold;
+            text-align: center;
+            width:20%;
+            margin:0 auto;
+        }
+        .clock{
+            height:500px;
+            width:500px;
+            -webkit-border-radius: 13px;
+            background:url("clock.png") 0 0/cover no-repeat;
+            position: relative;
+            left:50%;
+            margin-left: -250px;
+        }
+        .point{
+            position: absolute;
+            height:500px;
+            width:100px;
+            top:0;
+            left:200px;
+        }
+        .hour{
+            background: url("clock.png") -700px 0/cover no-repeat;
+        }
+        .minute{
+            background: url("clock.png") -600px 0/cover no-repeat;
+        }
+        .second{
+            background:url("clock.png") -500px 0/cover no-repeat;
+        }
+    </style>
+    <script>
+        window.onload=function() {
+//            setInterval(function () {
+//                var clock=document.getElementById('clock');
+//                var child=clock.children;
+//                var date=new Date();
+//                var second=date.getSeconds();
+//                var hour=date.getHours();
+//                var minute=date.getMinutes();
+//                child[2].style.transform='rotate('+second*6+'deg)';
+//                child[1].style.transform='rotate('+minute*6+'deg)';
+//                child[0].style.transform='rotate('+hour*30+'deg)';
+//            },100);
+            setInterval(function () {
+                var clock=document.getElementById('clock');
+                var child=clock.children;
+                var date=new Date();
+                var mil=date.getMilliseconds();
+                var second=date.getSeconds()+mil/1000;
+                var minute=date.getMinutes()+second/60;
+                var hour=date.getHours()%12+minute/60;
+
+                child[2].style.transform='rotate('+second*6+'deg)';
+                child[1].style.transform='rotate('+minute*6+'deg)';
+                child[0].style.transform='rotate('+hour*30+'deg)';
+            },100);
+        }
+    </script>
+</head>
+<body>
+     <header class="header">clock</header>
+     <div id="clock" class="clock">
+         <div class="point hour"></div>
+         <div class="point minute"></div>
+         <div class="point second"></div>
+     </div>
+</body>
+</html>
